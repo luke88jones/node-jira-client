@@ -318,6 +318,16 @@ describe('Jira API Tests', () => {
       result.should.eql('http://jira.somehost.com:8080/rest/api/2.0/issue/PK-100?expand=');
     });
 
+    it('addVote hits proper url', async () => {
+      const result = await dummyURLCall('addVote', ['PK-100']);
+      result.should.eql('http://jira.somehost.com:8080/rest/api/2.0/issue/PK-100/votes');
+    });
+
+    it('addVote hits proper url', async () => {
+      const result = await dummyURLCall('removeVote', ['PK-100']);
+      result.should.eql('http://jira.somehost.com:8080/rest/api/2.0/issue/PK-100/votes');
+    });
+
     it('findIssue hits proper url with expansion', async () => {
       const result = await dummyURLCall('findIssue', ['PK-100', 'transitions,changelog']);
       result.should.eql('http://jira.somehost.com:8080/rest/api/2.0/issue/PK-100?expand=transitions,changelog');

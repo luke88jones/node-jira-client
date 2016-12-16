@@ -206,6 +206,36 @@ export default class JiraApi {
   }
 
   /**
+   * @name addVote
+   * @function
+   * Add a vote to a jira issue
+   * [Jira Doc](https://docs.atlassian.com/jira/REST/server/#api/2/issue-addVote)
+   * @param {string} issueId - The issue id to add a vote for
+  */
+  addVote(issueId) {
+    return this.doRequest(this.makeRequestHeader(this.makeUri({
+      pathname: `/issue/${issueId}/votes`,
+    }), {
+      method: 'POST',
+    }));
+  }
+
+  /**
+   * @name removeVote
+   * @function
+   * Remove a vote from a jira issue
+   * [Jira Doc](https://docs.atlassian.com/jira/REST/server/#api/2/issue-removeVote)
+   * @param {string} issueId - The issue id to remove a vote form
+  */
+  removeVote(issueId) {
+    return this.doRequest(this.makeRequestHeader(this.makeUri({
+      pathname: `/issue/${issueId}/votes`,
+    }), {
+      method: 'DELETE',
+    }));
+  }
+
+  /**
    * @name getUnresolvedIssueCount
    * @function
    * Get the unresolved issue count
